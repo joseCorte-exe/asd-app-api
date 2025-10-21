@@ -1,8 +1,14 @@
+import { Hono } from "hono";
+import { CreateAnalysisController } from "./use-cases/create-analysis/create-analysis.controller";
+
 export class AnalysisModule {
-  // Module configuration for Analysis
-  // TODO: Add dependency injection configuration
-  // TODO: Add providers specific to this module
-  // TODO: Add exports for other modules to consume
-  
-  static readonly MODULE_NAME = 'analysis';
+  constructor(
+    private readonly createAnalysisController: CreateAnalysisController,
+  ) {
+    this.configureRoutes = this.configureRoutes.bind(this);
+  }
+
+  configureRoutes(app: Hono<HonoType>) {
+    app.post('/analysis', this.createAnalysisController.handle);
+  }
 }

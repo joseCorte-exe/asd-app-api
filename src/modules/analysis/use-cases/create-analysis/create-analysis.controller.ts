@@ -1,5 +1,6 @@
 import { Context } from "hono";
-import { InputCreateAnalysisDTO } from '../dtos/create-analysis.dto';
+import { formDataToObject } from "../../../../lib/form-data-to-json";
+import { InputCreateAnalysisDTO } from "../dtos/create-analysis.dto";
 import { CreateAnalysisUseCase } from './create-analysis.use-case';
 
 export class CreateAnalysisController {
@@ -8,9 +9,15 @@ export class CreateAnalysisController {
   }
 
   async handle(c: Context) {
-    const body: InputCreateAnalysisDTO = await c.req.json();
+    const body = await c.req.formData();
+    const formatted = formDataToObject(body);
 
-    const result = await this.usecase.execute(body);
+    const dto = new InputCreateAnalysisDTO();
+    dto.userId = formatted.userId;
+    dto.email = formatted.email;
+    dto.image = formatted.image;
+
+    const result = await this.usecase.execute(dto);
 
     return c.newResponse(JSON.stringify(result), 201);
   }
