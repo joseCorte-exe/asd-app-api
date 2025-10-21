@@ -1,0 +1,9 @@
+import { Prisma{{pascalCase entity}}Repository } from "../../repositories/prisma-{{kebabCase entity}}.repository";
+import { {{pascalCase action}}Controller } from "./{{kebabCase action}}.controller";
+import { {{pascalCase action}}UseCase } from "./{{kebabCase action}}.use-case";
+
+const {{camelCase entity}}Repository = new Prisma{{pascalCase entity}}Repository();
+
+const usecase = new {{pascalCase action}}UseCase({{camelCase entity}}Repository);
+
+export const {{camelCase action}}Controller = new {{pascalCase action}}Controller(usecase);
