@@ -1,14 +1,12 @@
-import { IsUserObject } from '../../../../lib/is-user-object/index.js';
+import { IsString } from 'class-validator';
 import { IsImageFile } from '../../../../lib/is-image-file/index.js';
 
-type User = {
-  id: string;
-  email: string;
-}
-
 export class InputCreateAnalysisDTO {
-  @IsUserObject()
-  user!: User;
+  @IsString()
+  userId!: string;
+
+  @IsString()
+  email!: string;
 
   @IsImageFile()
   image!: File;
