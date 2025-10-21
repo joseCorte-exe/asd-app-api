@@ -15,12 +15,12 @@
   //     "id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
   //   }
   // ],
-  // "r2_buckets": [
-  //   {
-  //     "binding": "MY_BUCKET",
-  //     "bucket_name": "my-bucket"
-  //   }
-  // ],a
+  "r2_buckets": [
+    {
+      "binding": "R2",
+      "bucket_name": "asd-app-bucket"
+    }
+  ],
   "d1_databases": [
     {
       "binding": "DB",
