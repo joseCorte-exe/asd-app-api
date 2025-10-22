@@ -3,6 +3,8 @@ import { initializeD1 } from './database/d1'
 import { setR2 } from './database/r2'
 import { AnalysisModule } from './modules/analysis/analysis.module'
 import { createAnalysisController } from './modules/analysis/use-cases/create-analysis/create-analysis.factory'
+import { createUserController } from './modules/user/use-cases/create-user/create-user.factory'
+import { UserModule } from './modules/user/user.module'
 
 const app = new Hono<HonoType>()
 
@@ -20,5 +22,9 @@ app.get('/', (c) => {
 const analysisModule = new AnalysisModule(createAnalysisController)
 
 analysisModule.configureRoutes(app)
+
+const usersModule = new UserModule(createUserController)
+
+usersModule.configureRoutes(app)
 
 export default app
