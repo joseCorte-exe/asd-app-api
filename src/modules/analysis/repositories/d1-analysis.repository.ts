@@ -4,11 +4,20 @@ import { Analysis, AnalysisRepositoryInterface } from './analysis-repository.int
 
 export class D1AnalysisRepository implements AnalysisRepositoryInterface {
   constructor(public db: D1Database) {
-    console.log("d1", d1)
     this.db = d1
   }
 
   async create(analysis: Analysis): Promise<void> {
-    console.log("aqui", this.db)
+    await this.db.prepare(
+      'INSERT INTO analyses (id, userId, imageUrl, result, status) VALUES (?, ?, ?, ?, ?)',
+    )
+      .bind(
+        analysis.id,
+        analysis.userId,
+        analysis.imageUrl,
+        analysis.result,
+        analysis.status,
+      )
+      .run()
   }
 }

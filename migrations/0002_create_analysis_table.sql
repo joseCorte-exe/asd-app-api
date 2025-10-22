@@ -1,4 +1,3 @@
--- Migration number: 0002 	 2025-10-21T18:12:03.303Z
 CREATE TABLE analyses (
   id TEXT PRIMARY KEY,
   userId TEXT NOT NULL,

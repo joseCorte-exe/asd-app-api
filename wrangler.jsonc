@@ -18,7 +18,8 @@
   "r2_buckets": [
     {
       "binding": "R2",
-      "bucket_name": "asd-app-bucket"
+      "bucket_name": "asd-app-bucket",
+      "preview_bucket_name": "preview-asd-app-bucket"
     }
   ],
   "d1_databases": [
